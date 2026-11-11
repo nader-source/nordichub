@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#faf7f1">
+<title>Nordic Hub | Julebord lørdag 28. november</title>
+<meta name="description" content="Nordisk julebord i Alfaz del Pi, Alicante. Varme og kalde retter laget med ferske, lokale råvarer. Lørdag 28. november. Bestill plass.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f1; --paper:#ffffff; --ink:#18201b; --green:#1d382c; --green2:#142a21;
+  --gold:#b08d4f; --gold2:#d9bd85; --berry:#8a2f3d; --muted:#6a706b; --line:#e6dfd0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Jost,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.05;color:var(--green)}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* hero */
+.hero{position:relative;background:var(--bg);overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;
+  background-image:
+   radial-gradient(circle at 12% 18%,rgba(176,141,79,.35) 0 2px,transparent 3px),
+   radial-gradient(circle at 28% 62%,rgba(176,141,79,.25) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 46% 12%,rgba(29,56,44,.18) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 58% 78%,rgba(176,141,79,.3) 0 2px,transparent 3px),
+   radial-gradient(circle at 71% 30%,rgba(29,56,44,.15) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 88% 70%,rgba(176,141,79,.3) 0 2px,transparent 3px),
+   radial-gradient(circle at 93% 15%,rgba(29,56,44,.18) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 5% 88%,rgba(29,56,44,.15) 0 1.5px,transparent 2.5px)}
+.hero .wrap{position:relative}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:500;font-size:1.25rem;letter-spacing:.2em;text-transform:uppercase;line-height:1.1;color:var(--green)}
+.logo small{display:block;font-size:.55rem;letter-spacing:.4em;color:var(--gold);font-weight:400;margin-top:5px}
+.nav a.btn-s{font-size:.78rem;text-decoration:none;letter-spacing:.16em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--gold);padding:4px 0}
+.nav a.btn-s:hover{color:var(--gold)}
+.herogrid{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center;padding:72px 0 96px}
+.eyebrow{text-transform:uppercase;letter-spacing:.3em;font-size:.74rem;color:var(--gold);margin-bottom:22px}
+.hero h1{font-size:clamp(3rem,7.2vw,5.6rem);letter-spacing:-.01em}
+.hero h1 em{color:var(--berry);font-style:italic;font-weight:500}
+.hero p.lead{max-width:42ch;margin-top:26px;font-size:1.12rem;color:#4a514c;font-weight:300}
+.facts{display:grid;gap:0;margin-top:36px;max-width:420px;border-top:1px solid var(--line)}
+.facts>div{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.facts b{min-width:4.2em;color:var(--gold);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;padding-top:3px}
+.cta{display:inline-block;margin-top:38px;background:var(--green);color:var(--bg);text-decoration:none;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;padding:17px 36px;border-radius:2px;transition:background .2s}
+.cta:hover{background:var(--berry)}
+.heroimg{border-radius:999px 999px 4px 4px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(24,32,27,.45)}
+.heroimg img{width:100%;height:100%;object-fit:cover}
+
+/* ornament */
+.orn{display:flex;align-items:center;justify-content:center;gap:18px;color:var(--gold);padding:8px 0}
+.orn:before,.orn:after{content:"";height:1px;width:min(22vw,200px);background:var(--line)}
+.orn svg{width:26px;height:26px}
+
+section{padding:96px 0}
+.sec-title{font-size:clamp(2.2rem,4.6vw,3.3rem);margin-bottom:14px}
+.sec-sub{color:var(--muted);max-width:56ch;margin-bottom:52px;font-weight:300;font-size:1.05rem}
+.kicker{text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;color:var(--gold);margin-bottom:14px;font-weight:500}
+
+/* intro */
+.intro{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start}
+.intro p{margin-bottom:18px;color:#454c47;font-size:1.06rem;font-weight:300}
+.card{padding:0}
+.card h3{font-size:1.5rem;margin-bottom:6px}
+.card ul{list-style:none;border-top:1px solid var(--line);margin-top:14px}
+.card li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.card li>span:first-child{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;padding-top:3px}
+.card li>span:last-child{text-align:right}
+
+/* menu */
+.menu{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.menu .head{text-align:center}
+.menu .head .sec-sub{margin-left:auto;margin-right:auto}
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;align-items:start}
+.course h3{font-size:1.7rem;margin-bottom:18px;padding-top:18px;border-top:2px solid var(--green)}
+.course ul{list-style:none}
+.course li{padding:11px 0;font-weight:500;font-size:1rem;color:var(--ink)}
+.course li small{display:block;color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.55;margin-top:2px}
+.price-note{margin-top:60px;padding-top:34px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;justify-content:center;text-align:center}
+.price-note .big{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--berry);font-weight:500}
+.price-note>span{color:var(--muted)}
+
+/* who */
+.who{background:var(--bg)}
+.who .head{text-align:center}
+.who .head .sec-sub{margin-left:auto;margin-right:auto}
+.chefs{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:860px;margin:0 auto}
+.chef{text-align:center}
+.chef img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 4px 4px;box-shadow:0 24px 50px -30px rgba(24,32,27,.5)}
+.chef .t{padding:24px 8px 0}
+.chef h3{font-size:1.8rem;margin-bottom:6px}
+.chef p{color:var(--muted);font-weight:300;font-size:.98rem;max-width:30ch;margin:0 auto}
+.chef.n img{object-position:50% 25%}
+.chef.k img{object-position:48% 20%}
+.tag2{margin-top:64px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-style:italic;color:var(--berry)}
+.occ{margin-top:10px;text-align:center;color:var(--muted);font-weight:300;max-width:58ch;margin-left:auto;margin-right:auto}
+
+/* booking */
+.book{background:var(--green);color:var(--bg)}
+.book h2{color:var(--bg)}
+.book .kicker{color:var(--gold2)}
+.book .sec-sub{color:#c9d3cc}
+.bookgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+.price{font-family:'Cormorant Garamond',serif;font-size:4.2rem;color:var(--gold2);line-height:1}
+.price small{font-family:Jost;font-size:.9rem;color:#c9d3cc;margin-left:10px;font-weight:300;letter-spacing:.06em}
+.steps{margin-top:30px;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;padding:12px 0 12px 48px;position:relative;color:#dbe3dd;font-weight:300}
+.steps li:before{content:counter(s);position:absolute;left:0;top:11px;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);color:var(--gold2);display:grid;place-items:center;font-size:.85rem}
+.contact{margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16);font-weight:300;color:#dbe3dd}
+.contact a{color:var(--gold2);font-weight:500}
+form{background:var(--bg);color:var(--ink);padding:36px;border-radius:4px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:.72rem;font-weight:500;margin:16px 0 7px;color:var(--green);text-transform:uppercase;letter-spacing:.16em}
+input,select,textarea{width:100%;font:inherit;padding:13px 14px;border:1px solid #d8cfba;border-radius:2px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+textarea{min-height:92px;resize:vertical}
+button.submit{margin-top:24px;width:100%;border:0;cursor:pointer;background:var(--green);color:var(--bg);font:500 .8rem Jost;letter-spacing:.18em;text-transform:uppercase;padding:18px;border-radius:2px}
+button.submit:hover{background:var(--berry)}
+button.submit:disabled{opacity:.6;cursor:wait}
+.hp{position:absolute;left:-9999px}
+.fine{font-size:.8rem;color:var(--muted);margin-top:14px}
+.done{display:none;text-align:center;padding:18px 4px}
+.done h3{font-size:2.2rem;margin-bottom:10px}
+.done p{color:#454c47;margin-bottom:16px}
+.paybtn{display:inline-block;background:var(--gold);color:#1b1608;text-decoration:none;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:16px 32px;border-radius:2px;margin-top:6px}
+.err{display:none;margin-top:14px;color:#a02020;font-size:.9rem}
+
+footer{padding:52px 0;text-align:center;color:var(--muted);font-size:.92rem;background:var(--bg)}
+footer .logo{margin-bottom:14px;display:inline-block}
+
+@media(max-width:900px){
+  .herogrid,.intro,.bookgrid,.chefs{grid-template-columns:1fr}
+  .courses{grid-template-columns:1fr;gap:40px}
+  .heroimg{aspect-ratio:4/3;border-radius:999px 999px 4px 4px;max-width:420px;margin:0 auto;aspect-ratio:3/4;order:-1}
+  .herogrid{padding:40px 0 64px;gap:40px}
+  .row{grid-template-columns:1fr}
+  .chefs{gap:44px;max-width:380px}
+  section{padding:68px 0}
+  form{padding:26px}
+}
+
+/* ---- polish: motion + mobile ---- */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s cubic-bezier(.2,.6,.2,1),transform 1s cubic-bezier(.2,.6,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
+.hero .eyebrow,.hero h1,.hero p.lead,.hero .facts,.hero .cta{animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both}
+.hero h1{animation-delay:.12s}.hero p.lead{animation-delay:.26s}.hero .facts{animation-delay:.4s}.hero .cta{animation-delay:.52s}
+.heroimg img{animation:settle 2.2s cubic-bezier(.2,.6,.2,1) both}
+.cta,button.submit,.paybtn{transition:background .25s,transform .25s,box-shadow .25s}
+.cta:hover,button.submit:hover{transform:translateY(-1px);box-shadow:0 12px 24px -14px rgba(24,32,27,.6)}
+.course li{transition:transform .25s}
+@media(hover:hover){.course li:hover{transform:translateX(3px)}}
+.chef img{transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+@media(hover:hover){.chef:hover img{transform:scale(1.02)}}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(250,247,241,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s cubic-bezier(.2,.6,.2,1)}
+.sticky.show{transform:none}
+.sticky div{line-height:1.25;font-size:.95rem;color:var(--green)}
+.sticky small{color:var(--muted);font-size:.78rem}
+.sticky a{background:var(--green);color:var(--bg);text-decoration:none;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;padding:14px 22px;border-radius:2px;white-space:nowrap}
+@media(max-width:900px){
+  .sticky{display:flex}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  .wrap{padding:0 22px}
+  .nav{padding:22px 0}
+  .herogrid{padding:34px 0 56px;gap:44px}
+  .heroimg{order:0;max-width:340px;aspect-ratio:3/4}
+  .hero h1{font-size:clamp(2.7rem,13vw,3.6rem)}
+  .hero p.lead{font-size:1.05rem}
+  .facts{max-width:none}
+  .cta{display:block;text-align:center;padding:18px 24px}
+  .sec-sub{margin-bottom:36px}
+  .course li{padding:13px 0}
+  input,select,textarea{font-size:16px;min-height:50px}
+  textarea{min-height:100px}
+  button.submit{padding:20px}
+  .price{font-size:3.4rem}
+  .tag2{font-size:1.6rem;margin-top:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+
+.chefs{grid-template-columns:1.25fr 1fr;align-items:start;max-width:960px}
+.chef .role{display:block;text-transform:uppercase;letter-spacing:.26em;font-size:.68rem;color:var(--gold);margin-bottom:10px;font-weight:500}
+.chef a.lnk{display:inline-block;margin-top:14px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--green);border-bottom:1px solid var(--gold);padding-bottom:3px;transition:color .2s}
+.chef a.lnk:hover{color:var(--berry)}
+.chef.k h3{font-size:2.2rem}
+@media(max-width:900px){.chefs{grid-template-columns:1fr;max-width:380px}}
+
+.paynote{margin-top:22px;padding-left:16px;border-left:2px solid var(--gold);font-weight:300;color:#dbe3dd}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="logo">Nordic Hub<small>Food &middot; Events &middot; Catering</small></div>
+      <a class="btn-s" href="#book">Bestill plass</a>
+    </nav>
+    <div class="herogrid">
+      <div>
+        <p class="eyebrow">Alfaz del Pi &middot; Alicante</p>
+        <h1>Julebord med <em>nordisk</em> julestemning</h1>
+        <p class="lead">Et bugnende julebord med varme og kalde retter, laget med ferske lokale råvarer og kjære juletradisjoner. Vårt første, ikke vårt siste.</p>
+        <div class="facts">
+          <div><b>Dato</b> <span data-c="date">Lørdag 28. november 2026</span></div>
+          <div id="timeRow"><b>Tid</b> <span data-c="time"></span></div>
+          <div><b>Sted</b> <span data-c="venue">C. Manises, 18, Plaza de Sol, 03580 Alfaz del Pi, Alicante</span></div>
+          <div><b>Pris</b> <span><span data-c="price">60</span> &euro; per person</span></div>
+        </div>
+        <a class="cta" href="#book">Reserver plassene dine</a>
+      </div>
+      <div class="heroimg"><img src="img/food.jpg" alt="Anrettet forrett hos Nordic Hub" width="900" height="1350"></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap intro">
+    <div>
+      <p class="kicker">Good food. Great people. Special moments.</p>
+      <h2 class="sec-title">En uforglemmelig julefeiring</h2>
+      <p>Hos oss på Nordic Hub forener vi kjære nordiske juletradisjoner med fantastiske, ferske lokale råvarer. Gled deg til et bugnende julebord med alt du kan ønske deg av både varme og kalde retter.</p>
+      <p>Kom med familie, venner eller kolleger, og len deg tilbake til en lang og avslappet kveld rundt ett bord.</p>
+    </div>
+    <div class="card">
+      <h3>Kvelden</h3>
+      <ul>
+        <li><span>Dato</span><span data-c="date">Lørdag 28. november 2026</span></li>
+        <li><span>Sted</span><span data-c="venue">C. Manises, 18, Plaza de Sol, 03580 Alfaz del Pi, Alicante</span></li>
+        <li><span>Format</span><span>Julebord, varmt og kaldt</span></li>
+        <li><span>Pris</span><span><span data-c="price">60</span> &euro; per person</span></li>
+        <li><span>Drikke</span><span>Drikkebonger kjøpes i baren</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="orn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M9.5 3.8L12 6l2.5-2.2M9.5 20.2L12 18l2.5 2.2"/></svg></div>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="head">
+    <p class="kicker">Jule menu</p>
+    <h2 class="sec-title">Julebordet</h2>
+    <p class="sec-sub">Et tradisjonelt nordisk julebord. Vegetar eller allergier? Si fra når du bestiller, så tar vi hånd om deg.</p>
+    </div>
+
+    <div class="courses">
+      <div class="course">
+        <h3>Det kalde julebordet &amp; delikatesser</h3>
+        <ul>
+          <li>Nordic Food Hubs skagenrøre<small>Luksuriøs og kremet salat med ferske reker, dill og sitron.</small></li>
+          <li>Hjemmelaget gravlaks<small>Gravet på kjøkkenet etter tradisjonell oppskrift, servert med en klassisk hovmestersaus.</small></li>
+          <li>Husets sildebord<small>Et rikt utvalg av julens beste sildesorter.</small></li>
+          <li>Marinert svinekam med smak av jul<small>Mør, tynnskåret svinekam krydret med julens varme smaker.</small></li>
+          <li>Spansk julehilsen<small>Fat med vellagret, fløyelsmyk Jamón Serrano.</small></li>
+          <li>Lun eggerøre<small>Fløyelsmyk og nylaget, det perfekte følget til laksen og skinken.</small></li>
+          <li>Kremet brokkolisalat<small>Sprø, frisk og moderne salat med en harmonisk julevri.</small></li>
+          <li>Tradisjonell julepotetsalat<small>En smaksrik og fyldig klassiker som hører julen til.</small></li>
+          <li>Nygrillet focaccia &amp; pisket smør<small>Luftig, hjemmebakt brød servert med fyldig, pisket meierismør.</small></li>
+        </ul>
+      </div>
+
+      <div class="course">
+        <h3>Julens varme retter</h3>
+        <ul>
+          <li>Sprøstekt svinneribbe<small>Saftig tynnribbe med garantert sprø svor, servert med tradisjonelle medisterkaker og julepølser.</small></li>
+          <li>Pinnekjøtt, Nordic jule classic<small>Tradisjonelt norsk pinnekjøtt, dampet langsomt til perfeksjon. Serveres med kremet kålrotsuppe, kokte poteter og smakfull sjy.</small></li>
+          <li>Lettsaltet juletorsk med crispy chorizo<small>Delikat, hvit torsk servert med en fyldig smørsaus og et sprøtt innslag av lokal, spansk chorizo.</small></li>
+          <li>Tradisjonelt tilbehør<small>Klassisk surkål, rødkål, fyldig ribbesaus og rørte tyttebær.</small></li>
+        </ul>
+      </div>
+
+      <div class="course">
+        <h3>Julens søte avslutning</h3>
+        <ul>
+          <li>Klassisk riskrem<small>Luftig og fløyelsmyk, servert med vår egen dype og smakfull jordbærjulesaus.</small></li>
+          <li>Dronning Maud pudding<small>Den kongelige vestlandsklassikeren med krem, eggedosis og lagvis revet sjokolade med et hint av portvin.</small></li>
+          <li>Mørk sjokolademousse<small>Fyldig og luftig mousse, servert med en fløyelsmyk, hjemmelaget vaniljesaus.</small></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="price-note">
+      <div class="big"><span data-c="price" style="color:inherit;font-size:inherit">60</span> &euro; <span style="font-family:Jost;font-size:1rem">per person</span></div>
+      <span>Drikkebonger kjøpes i baren.</span>
+    </div>
+  </div>
+</section>
+
+<section class="who">
+  <div class="wrap">
+    <div class="head">
+    <p class="kicker">Hvem er vi</p>
+    <h2 class="sec-title">To kjøkken, ett bord</h2>
+    <p class="sec-sub">Hodene bak Nordic Private Chef og Backyard Burger slår seg sammen for å skape noe nytt: en fusjon av smaker, kreativitet og uforglemmelige matopplevelser.</p>
+    </div>
+    <div class="chefs">
+      <div class="chef k">
+        <img src="img/karlo.jpg" alt="Karlo" loading="lazy" width="1000" height="667">
+        <div class="t"><span class="role">Kokken bak julebordet</span><h3>Karlo</h3><p>Bak Nordic Hub og Nordic Private Chef, med over 20 års erfaring fra kjøkkenet.</p>
+          <a class="lnk" href="https://www.instagram.com/nordicprivatechef/" target="_blank" rel="noopener">@nordicprivatechef</a></div>
+      </div>
+      <div class="chef n">
+        <img src="img/nader.jpg" alt="Nader" loading="lazy" width="700" height="1050">
+        <div class="t"><span class="role">Eventansvarlig</span><h3>Nader</h3><p>Gründer og driver av Backyard Burger.</p>
+          <a class="lnk" href="https://backyardburger.app" target="_blank" rel="noopener">backyardburger.app</a></div>
+      </div>
+    </div>
+    <p class="tag2">Ditt arrangement. Dine folk. Vårt sted.</p>
+    <p class="occ">Bursdager, familiesammenkomster, arrangementer, temakvelder og gourmetkvelder. Vi er her for deg.</p>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap bookgrid">
+    <div>
+      <p class="kicker">Reserver plassen din</p>
+      <h2 class="sec-title">Bestill bord</h2>
+      <p class="sec-sub">Det er begrenset med plasser. Send forespørselen, så bekrefter vi på e-post.</p>
+      <div class="price"><span data-c="price">60</span> &euro;<small>per person</small></div>
+      <ol class="steps">
+        <li>Fyll ut skjemaet med antall gjester og eventuelle kostholdsbehov.</li>
+        <li>Vi bekrefter plassene dine på e-post.</li>
+        <li>Du betaler med den sikre betalingslenken for å låse bestillingen.</li>
+      </ol>
+      <p class="paynote">Vi sender deg en betalingslenke på e-post. Betalingen skjer på forhånd og er det som reserverer plassen din for kvelden.</p>
+      <p class="contact">Foretrekker du å snakke med oss? Ring eller send melding på <a href="tel:+46704022116">+46 70 402 21 16</a> eller <a href="https://wa.me/46704022116" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    </div>
+
+    <div>
+      <form id="f" novalidate>
+        <div id="fields">
+          <div class="row">
+            <div><label for="name">Fullt navn</label><input id="name" name="name" required autocomplete="name"></div>
+            <div><label for="email">E-post</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          </div>
+          <div class="row">
+            <div><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div><label for="guests">Antall gjester</label>
+              <select id="guests" name="guests" required>
+                <option value="">Velg</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                <option>7</option><option>8</option><option>9</option><option>10</option><option>Flere enn 10</option>
+              </select>
+            </div>
+          </div>
+          <label for="notes">Kostholdsbehov eller kommentarer</label>
+          <textarea id="notes" name="notes" placeholder="Vegetar, allergier, barn, ønsker om plassering..."></textarea>
+          <input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="submit" id="btn" type="submit">Send bestilling</button>
+          <p class="err" id="err" role="alert"></p>
+          <p class="fine">Når du sender skjemaet godtar du at vi bruker opplysningene dine kun til å behandle bestillingen.</p>
+        </div>
+
+        <div class="done" id="done" role="status">
+          <h3>Takk!</h3>
+          <p id="donemsg">Vi har mottatt forespørselen din og bekrefter plassene dine på e-post snart.</p>
+          <a class="paybtn" id="pay" href="#" style="display:none" target="_blank" rel="noopener">Betal nå</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">Nordic Hub<small>Food &middot; Events &middot; Catering</small></div><br>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Manises+18+03580+Alfaz+del+Pi+Alicante" target="_blank" rel="noopener" data-c="venue">C. Manises, 18, Plaza de Sol, 03580 Alfaz del Pi, Alicante</a><br><a href="tel:+46704022116">+46 70 402 21 16</a>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><div><span data-c="price">60</span> &euro; per person<br><small data-c="date">Lørdag 28. november 2026</small></div><a href="#book">Bestill plass</a></div>
+
+<script src="config.js"></script>
+<script>
+const CONFIG = Object.assign({}, window.SITE, {date: window.SITE.date_nb});
+
+document.querySelectorAll("[data-c]").forEach(el=>{
+  const k=el.dataset.c; if(CONFIG[k]) el.textContent=CONFIG[k];
+});
+if(!CONFIG.time) document.getElementById("timeRow").style.display="none";
+
+const f=document.getElementById("f"), btn=document.getElementById("btn"), err=document.getElementById("err");
+
+function showDone(){
+  document.getElementById("fields").style.display="none";
+  document.getElementById("done").style.display="block";
+  if(CONFIG.paymentLink){
+    const p=document.getElementById("pay"); p.href=CONFIG.paymentLink; p.style.display="inline-block";
+    document.getElementById("donemsg").textContent="Vi har mottatt forespørselen din. Betal trygt nå for å låse bestillingen, så bekrefter vi på e-post.";
+  } else {
+    document.getElementById("donemsg").textContent="Vi har mottatt forespørselen din og sender deg en betalingslenke på e-post. Betalingen skjer på forhånd og reserverer plassen din for kvelden.";
+  }
+}
+function fail(m){err.textContent=m;err.style.display="block"}
+
+f.addEventListener("submit",async e=>{
+  e.preventDefault(); err.style.display="none";
+  const d=Object.fromEntries(new FormData(f).entries());
+  if(d._gotcha) return;
+  if(!d.name||!/^\S+@\S+\.\S+$/.test(d.email||"")||!d.guests){fail("Fyll inn navn, en gyldig e-postadresse og antall gjester.");return}
+
+  if(CONFIG.formEndpoint){
+    btn.disabled=true; btn.textContent="Sender...";
+    try{
+      await fetch(CONFIG.formEndpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({},d,{lang:document.documentElement.lang}))});
+      showDone();
+    }catch(_){ fail("Noe gikk galt. Prøv igjen, eller kontakt oss på +46 70 402 21 16."); }
+    btn.disabled=false; btn.textContent="Send bestilling";
+  } else {
+    const body=encodeURIComponent("Navn: "+d.name+"\nE-post: "+d.email+"\nTelefon: "+(d.phone||"")+"\nGjester: "+d.guests+"\nKommentar: "+(d.notes||""));
+    window.location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Julebord-bestilling: "+d.name+" ("+d.guests+")")+"&body="+body;
+    showDone();
+  }
+});
+
+/* discreet motion */
+document.documentElement.classList.add("js");
+(function(){
+  var sel=".sec-title,.kicker,.sec-sub,.intro p,.card,.course,.chef,.price-note,.tag2,.occ,.steps,.contact,form,.orn";
+  var els=[].slice.call(document.querySelectorAll(sel));
+  els.forEach(function(el){
+    el.classList.add("reveal");
+    var sibs=el.parentElement?[].slice.call(el.parentElement.children).filter(function(c){return c.classList.contains("course")||c.classList.contains("chef")}):[];
+    var i=sibs.indexOf(el); if(i>0) el.style.transitionDelay=(i*120)+"ms";
+  });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    els.forEach(function(el){io.observe(el)});
+  } else els.forEach(function(el){el.classList.add("in")});
+
+  var bar=document.getElementById("sticky"), hero=document.querySelector(".hero"), book=document.getElementById("book");
+  function upd(){
+    var past=hero.getBoundingClientRect().bottom<80;
+    var r=book.getBoundingClientRect(), inBook=r.top<window.innerHeight*.7&&r.bottom>0;
+    bar.classList.toggle("show",past&&!inBook);
+  }
+  window.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd); upd();
+})();
+</script>
+</body>
+</html>
