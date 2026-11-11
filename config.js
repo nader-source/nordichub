@@ -10,7 +10,7 @@ window.SITE = {
   email:   "info@nordichub.es",                 // hit kommer bestillinger hvis du ikke bruker skjematjeneste.
 
   // Adressen til bestillings-backend (Google Apps Script web app, slutter på /exec). Tom = bestillingen åpner e-postprogrammet i stedet.
-  formEndpoint: "",                             // f.eks. "https://script.google.com/macros/s/XXXX/exec"
+  formEndpoint: "https://script.google.com/macros/s/AKfycbwFjmxOAAsybI0K1K-Cllky5wFe0ZHpmXfb2xNxN98K8FtQurYpT6ikaNzEnBBw9-6C2w/exec",                             // f.eks. "https://script.google.com/macros/s/XXXX/exec"
 
   // Betalingslenke: ferdig (Stripe Payment Link eller SumUp). Tom = du sender lenken selv.
   paymentLink: ""                               // f.eks. "https://pay.sumup.com/b2c/XXXXXX"
