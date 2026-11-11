@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#faf7f1">
+<meta name="theme-color" content="#f7f4ed">
 <title>Book a table | Christmas buffet at Nordic Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#faf7f1; --paper:#ffffff; --ink:#18201b; --green:#1d382c; --green2:#142a21;
-  --gold:#b08d4f; --gold2:#d9bd85; --berry:#8a2f3d; --muted:#6a706b; --line:#e6dfd0;
+  --bg:#f7f4ed; --paper:#ffffff; --ink:#202b27; --green:#202b27; --green2:#34433d;
+  --gold:#8a8d78; --gold2:#c9cbb9; --berry:#6f8489; --muted:#6b706a; --line:#e3dccd;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Jost,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.05;color:var(--green)}
+body{font-family:'Open Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Jost,system-ui,sans-serif;font-weight:500;line-height:1.05;color:var(--green)}
 a{color:inherit}
 img{display:block;max-width:100%}
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
@@ -25,14 +25,14 @@ img{display:block;max-width:100%}
 .hero{position:relative;background:var(--bg);overflow:hidden}
 .hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;
   background-image:
-   radial-gradient(circle at 12% 18%,rgba(176,141,79,.35) 0 2px,transparent 3px),
-   radial-gradient(circle at 28% 62%,rgba(176,141,79,.25) 0 1.5px,transparent 2.5px),
-   radial-gradient(circle at 46% 12%,rgba(29,56,44,.18) 0 1.5px,transparent 2.5px),
-   radial-gradient(circle at 58% 78%,rgba(176,141,79,.3) 0 2px,transparent 3px),
-   radial-gradient(circle at 71% 30%,rgba(29,56,44,.15) 0 1.5px,transparent 2.5px),
-   radial-gradient(circle at 88% 70%,rgba(176,141,79,.3) 0 2px,transparent 3px),
-   radial-gradient(circle at 93% 15%,rgba(29,56,44,.18) 0 1.5px,transparent 2.5px),
-   radial-gradient(circle at 5% 88%,rgba(29,56,44,.15) 0 1.5px,transparent 2.5px)}
+   radial-gradient(circle at 12% 18%,rgba(166,169,149,.35) 0 2px,transparent 3px),
+   radial-gradient(circle at 28% 62%,rgba(166,169,149,.25) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 46% 12%,rgba(143,163,168,.18) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 58% 78%,rgba(166,169,149,.3) 0 2px,transparent 3px),
+   radial-gradient(circle at 71% 30%,rgba(143,163,168,.15) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 88% 70%,rgba(166,169,149,.3) 0 2px,transparent 3px),
+   radial-gradient(circle at 93% 15%,rgba(143,163,168,.18) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 5% 88%,rgba(143,163,168,.15) 0 1.5px,transparent 2.5px)}
 .hero .wrap{position:relative}
 .nav{display:flex;justify-content:space-between;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
 .logo{font-weight:500;font-size:1.25rem;letter-spacing:.2em;text-transform:uppercase;line-height:1.1;color:var(--green)}
@@ -49,7 +49,7 @@ img{display:block;max-width:100%}
 .facts b{min-width:4.2em;color:var(--gold);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;padding-top:3px}
 .cta{display:inline-block;margin-top:38px;background:var(--green);color:var(--bg);text-decoration:none;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;padding:17px 36px;border-radius:2px;transition:background .2s}
 .cta:hover{background:var(--berry)}
-.heroimg{border-radius:999px 999px 4px 4px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(24,32,27,.45)}
+.heroimg{border-radius:999px 999px 4px 4px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(32,43,39,.45)}
 .heroimg img{width:100%;height:100%;object-fit:cover}
 
 /* ornament */
@@ -82,7 +82,7 @@ section{padding:96px 0}
 .course li{padding:11px 0;font-weight:500;font-size:1rem;color:var(--ink)}
 .course li small{display:block;color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.55;margin-top:2px}
 .price-note{margin-top:60px;padding-top:34px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;justify-content:center;text-align:center}
-.price-note .big{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--berry);font-weight:500}
+.price-note .big{font-family:Jost,system-ui,sans-serif;font-size:2.8rem;color:var(--berry);font-weight:500}
 .price-note>span{color:var(--muted)}
 
 /* who */
@@ -91,13 +91,13 @@ section{padding:96px 0}
 .who .head .sec-sub{margin-left:auto;margin-right:auto}
 .chefs{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:860px;margin:0 auto}
 .chef{text-align:center}
-.chef img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 4px 4px;box-shadow:0 24px 50px -30px rgba(24,32,27,.5)}
+.chef img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 4px 4px;box-shadow:0 24px 50px -30px rgba(32,43,39,.5)}
 .chef .t{padding:24px 8px 0}
 .chef h3{font-size:1.8rem;margin-bottom:6px}
 .chef p{color:var(--muted);font-weight:300;font-size:.98rem;max-width:30ch;margin:0 auto}
 .chef.n img{object-position:50% 25%}
 .chef.k img{object-position:48% 20%}
-.tag2{margin-top:64px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-style:italic;color:var(--berry)}
+.tag2{margin-top:64px;text-align:center;font-family:Jost,system-ui,sans-serif;font-size:1.9rem;font-style:italic;color:var(--berry)}
 .occ{margin-top:10px;text-align:center;color:var(--muted);font-weight:300;max-width:58ch;margin-left:auto;margin-right:auto}
 
 /* booking */
@@ -106,7 +106,7 @@ section{padding:96px 0}
 .book .kicker{color:var(--gold2)}
 .book .sec-sub{color:#c9d3cc}
 .bookgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
-.price{font-family:'Cormorant Garamond',serif;font-size:4.2rem;color:var(--gold2);line-height:1}
+.price{font-family:Jost,system-ui,sans-serif;font-size:4.2rem;color:var(--gold2);line-height:1}
 .price small{font-family:Jost;font-size:.9rem;color:#c9d3cc;margin-left:10px;font-weight:300;letter-spacing:.06em}
 .steps{margin-top:30px;list-style:none;counter-reset:s}
 .steps li{counter-increment:s;padding:12px 0 12px 48px;position:relative;color:#dbe3dd;font-weight:300}
@@ -127,7 +127,7 @@ button.submit:disabled{opacity:.6;cursor:wait}
 .done{display:none;text-align:center;padding:18px 4px}
 .done h3{font-size:2.2rem;margin-bottom:10px}
 .done p{color:#454c47;margin-bottom:16px}
-.paybtn{display:inline-block;background:var(--gold);color:#1b1608;text-decoration:none;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:16px 32px;border-radius:2px;margin-top:6px}
+.paybtn{display:inline-block;background:var(--gold);color:#202b27;text-decoration:none;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:16px 32px;border-radius:2px;margin-top:6px}
 .err{display:none;margin-top:14px;color:#a02020;font-size:.9rem}
 
 footer{padding:52px 0;text-align:center;color:var(--muted);font-size:.92rem;background:var(--bg)}
@@ -153,13 +153,13 @@ footer .logo{margin-bottom:14px;display:inline-block}
 .hero h1{animation-delay:.12s}.hero p.lead{animation-delay:.26s}.hero .facts{animation-delay:.4s}.hero .cta{animation-delay:.52s}
 .heroimg img{animation:settle 2.2s cubic-bezier(.2,.6,.2,1) both}
 .cta,button.submit,.paybtn{transition:background .25s,transform .25s,box-shadow .25s}
-.cta:hover,button.submit:hover{transform:translateY(-1px);box-shadow:0 12px 24px -14px rgba(24,32,27,.6)}
+.cta:hover,button.submit:hover{transform:translateY(-1px);box-shadow:0 12px 24px -14px rgba(32,43,39,.6)}
 .course li{transition:transform .25s}
 @media(hover:hover){.course li:hover{transform:translateX(3px)}}
 .chef img{transition:transform .8s cubic-bezier(.2,.6,.2,1)}
 @media(hover:hover){.chef:hover img{transform:scale(1.02)}}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;align-items:center;justify-content:space-between;gap:16px;
-  padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(250,247,241,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(247,244,237,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s cubic-bezier(.2,.6,.2,1)}
 .sticky.show{transform:none}
 .sticky div{line-height:1.25;font-size:.95rem;color:var(--green)}
@@ -208,7 +208,7 @@ body{background:var(--bg)}
 .bkhero h1{font-size:clamp(2.3rem,10.5vw,3.1rem);animation:rise 1s cubic-bezier(.2,.6,.2,1) both}
 .bkhero h1 em{color:var(--berry);font-style:italic}
 .bkhero p.lead{margin-top:14px;font-size:1rem;color:#4a514c;font-weight:300}
-.bkimg{margin:20px 0 4px;border-radius:4px;aspect-ratio:16/10;object-fit:cover;object-position:50% 62%;height:auto;width:100%;box-shadow:0 22px 40px -26px rgba(24,32,27,.5)}
+.bkimg{margin:20px 0 4px;border-radius:4px;aspect-ratio:16/10;object-fit:cover;object-position:50% 62%;height:auto;width:100%;box-shadow:0 22px 40px -26px rgba(32,43,39,.5)}
 .bkfacts{margin-top:18px;border-top:1px solid var(--line)}
 .bkfacts>div{display:flex;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.97rem;line-height:1.45}
 .bkfacts b{min-width:3.6em;color:var(--gold);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.7rem;padding-top:4px}
@@ -241,19 +241,32 @@ body{background:var(--bg)}
 .sheet .course li{padding:9px 0;font-size:.98rem}
 .sheet .course li small{font-size:.86rem}
 .sheet .price-line{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);text-align:center}
-.sheet .price-line b{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--berry);font-weight:500}
-.sheet .sf{padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:rgba(250,247,241,.95)}
+.sheet .price-line b{font-family:Jost,system-ui,sans-serif;font-size:2.2rem;color:var(--berry);font-weight:500}
+.sheet .sf{padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:rgba(247,244,237,.95)}
 .sheet .sf button{width:100%;min-height:52px;border:0;background:var(--green);color:var(--bg);font:500 .78rem Jost;letter-spacing:.18em;text-transform:uppercase;border-radius:2px;cursor:pointer}
 body.lock{overflow:hidden}
 @media(min-width:700px){.bk{padding-top:10px}.sheet .sb{padding-top:26px}}
 @media(prefers-reduced-motion:reduce){.sheet,.sheet.open{transition:none}}
 
+
+/* brand */
+body{font-family:'Open Sans',system-ui,sans-serif}
+h1,h2,h3,.price,.price-note .big,.tag2,.stat .n,.sheet .price-line b{font-family:Jost,system-ui,sans-serif!important;font-weight:400;letter-spacing:-.005em}
+h1{font-weight:400}
+h1 em,.hero h1 em,.bkhero h1 em{font-style:normal;font-weight:300;color:var(--berry)}
+.tag2{font-style:normal;font-weight:300}
+.logo{font-family:Jost,system-ui,sans-serif;font-weight:400;letter-spacing:.04em;text-transform:none;line-height:1}
+.logo .lw{display:inline-flex;align-items:center;font-size:1.35rem;color:var(--ink);white-space:nowrap}
+.logo .o{width:.86em;height:.86em;margin:0 .04em;color:var(--ink)}
+.logo small{display:block;font-family:Jost,sans-serif;font-size:.6rem;letter-spacing:.42em;color:var(--ink);margin-top:6px;text-align:center;text-transform:none;font-weight:400}
+.book .logo .lw,.book .logo small,.who .logo .lw{color:inherit}
+.kicker,.eyebrow,.role,.facts b,.bkfacts b,label,.chip,.btn,.cta,button.submit,.btn-o,.sticky a,.nav a.btn-s{font-family:Jost,system-ui,sans-serif}
 </style>
 </head>
 <body>
 <div class="bk">
   <nav class="bknav">
-    <div class="logo">Nordic Hub<small>Food &middot; Events &middot; Catering</small></div>
+    <div class="logo"><span class="lw">N<svg class="o" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15.2 11v7.2M13.4 11v5.6c0 1.2.8 2 1.8 2s1.8-.8 1.8-2V11M15.2 18.6V29" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M24.6 29V11c-1.8 1-2.6 3.6-2.6 6.4 0 1.6.9 2.4 2.6 2.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>RDIC HUB</span><small>Food &middot; Events &middot; Catering</small></div>
     <a class="sw" href="book.html">Norsk</a>
   </nav>
 
