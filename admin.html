@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nordic Hub admin</title>
+<style>
+:root{--bg:#faf7f1;--ink:#18201b;--green:#1d382c;--gold:#b08d4f;--berry:#8a2f3d;--muted:#6a706b;--line:#e6dfd0;--ok:#2f6b4a;--warn:#b5651d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;color:var(--green)}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px}
+.logo{font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
+.logo small{display:block;font-size:.58rem;letter-spacing:.34em;color:var(--gold);margin-top:3px}
+
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.box{width:100%;max-width:360px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:28px}
+.box h1{font-size:1.7rem;margin:18px 0 6px}
+.box p{color:var(--muted);font-size:.92rem;margin-bottom:16px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:1px solid #d8cfba;border-radius:3px;background:#fff;color:var(--ink);min-height:46px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:3px;border:1px solid var(--green);background:var(--green);color:#fff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.btn.o{background:transparent;color:var(--green)}
+.btn.sm{min-height:38px;padding:0 13px;font-size:.72rem}
+.btn.full{width:100%;margin-top:12px}
+.btn:disabled{opacity:.5}
+.err{color:#a02020;font-size:.88rem;margin-top:10px;min-height:1.2em}
+
+/* app */
+#app{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+.top .r{display:flex;gap:8px}
+.event{padding:18px 0 4px;color:var(--muted);font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat .n{font-family:Georgia,serif;font-size:1.9rem;color:var(--green);line-height:1.1}
+.stat .l{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.stat.hl .n{color:var(--berry)}
+.bar{height:8px;background:#e9e2d2;border-radius:99px;overflow:hidden;margin:4px 0 4px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .5s}
+.barl{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 14px;font-size:.85rem;color:var(--ink)}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.search{margin-bottom:12px}
+.list{display:grid;gap:10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.card.c{opacity:.55}
+.card .h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card .nm{font-weight:600;font-size:1.05rem}
+.card .meta{font-size:.8rem;color:var(--muted)}
+.pill{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.pill.u{background:#fbeede;color:var(--warn)}
+.pill.p{background:#dff0e5;color:var(--ok)}
+.pill.c{background:#eee;color:#777}
+.card .sum{margin:8px 0 4px;font-size:.98rem}
+.card .sum b{color:var(--green)}
+.card .ct{font-size:.9rem;margin:2px 0}
+.card .ct a{color:var(--green)}
+.card .nt{font-size:.88rem;color:#4a514c;background:#faf7f1;border-left:2px solid var(--gold);padding:6px 10px;margin-top:8px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.empty{text-align:center;color:var(--muted);padding:36px 0}
+details.add{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:4px}
+details.add summary{padding:14px 16px;cursor:pointer;font-weight:600;color:var(--green)}
+details.add form{padding:0 16px 16px;display:grid;gap:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.chk{display:flex;gap:8px;align-items:center;font-size:.92rem}
+label.chk input{width:auto;min-height:0}
+dialog#md{border:1px solid var(--line);border-radius:6px;padding:0;width:min(92vw,460px)}
+dialog#md::backdrop{background:rgba(24,32,27,.45)}
+#md form{padding:20px;display:grid;gap:10px}
+#md h2{font-size:1.4rem}
+#md .to{font-size:.9rem;color:var(--muted)}
+#md textarea{min-height:90px}
+#md .row2{display:flex;gap:8px;justify-content:flex-end}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--green);color:#fff;padding:12px 18px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:20}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{margin-top:28px;color:var(--muted);font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="box">
+    <div class="logo">Nordic Hub<small>ADMIN</small></div>
+    <h1>Logga in</h1>
+    <p>Bokningar till julebordet.</p>
+    <form id="lf" autocomplete="off">
+      <input id="pw" type="password" placeholder="Lösenord" autocomplete="current-password" required>
+      <button class="btn full" id="lb" type="button">Logga in</button>
+      <div class="err" id="le"></div>
+    </form>
+  </div>
+</div>
+
+<div id="app">
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">Nordic Hub<small>ADMIN</small></div>
+      <div class="r">
+        <button class="btn o sm" id="refresh" type="button">Uppdatera</button>
+        <button class="btn o sm" id="logout" type="button">Logga ut</button>
+      </div>
+    </div>
+    <div class="event" id="event"></div>
+
+    <div class="stats" id="stats"></div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="barl" id="barl"></div>
+
+    <details class="add">
+      <summary>+ Lägg till bokning manuellt</summary>
+      <form id="af">
+        <input id="an" placeholder="Namn" required>
+        <div class="two"><input id="ag" type="number" min="1" max="200" inputmode="numeric" placeholder="Antal gäster" required>
+          <input id="ap" type="tel" placeholder="Telefon"></div>
+        <input id="ae" type="email" placeholder="E-post (valfritt)">
+        <input id="ano" placeholder="Kommentar (valfritt)">
+        <label class="chk"><input id="apd" type="checkbox"> Redan betald</label>
+        <button class="btn" type="submit">Spara bokning</button>
+      </form>
+    </details>
+
+    <div class="tools" id="chips"></div>
+    <input class="search" id="q" type="search" placeholder="Sök namn, e-post eller telefon">
+    <div class="list" id="list"></div>
+    <div class="foot">Allt sparas i Google Sheet-bladet "Bokningar".</div>
+  </div>
+</div>
+<dialog id="md"><form id="mf">
+  <h2>Skicka betalningslänk</h2>
+  <div class="to" id="mto"></div>
+  <input id="mlink" type="url" placeholder="Klistra in betalningslänk (SumUp/Stripe)" required>
+  <textarea id="mmsg" placeholder="Eget meddelande (valfritt)"></textarea>
+  <div class="row2"><button class="btn o sm" type="button" id="mcancel">Avbryt</button><button class="btn sm" type="submit" id="msend">Skicka mejl</button></div>
+</form></dialog>
+<div id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+var PW = '', DATA = {rows: [], cfg: {}}, FILTER = 'all', Q = '';
+var API = (window.SITE && window.SITE.formEndpoint) || '';
+function call(fn){
+  var args = [].slice.call(arguments, 1);
+  return fetch(API, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({action: fn, args: args})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){ if(!j.ok) throw new Error(j.error || 'Fel'); return j.result; });
+}
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2200)}
+function isAuth(e){return e && String(e.message||e).indexOf('AUTH')>=0}
+
+function load(){
+  return call('adminList', PW).then(function(d){ DATA = d; render(); }).catch(function(e){
+    if(isAuth(e)){ logout(true); } else toast('Fel: '+(e.message||e));
+  });
+}
+function login(e){
+  if(e && e.preventDefault) e.preventDefault();
+  if($('lb').disabled) return;
+  $('le').textContent = '';
+  PW = $('pw').value; $('lb').disabled = true;
+  call('adminList', PW).then(function(d){
+    DATA = d; try{sessionStorage.setItem('nhpw', PW)}catch(_){}
+    $('login').style.display='none'; $('app').style.display='block'; render();
+  }).catch(function(err){
+    $('le').textContent = isAuth(err) ? 'Fel lösenord.' : 'Kunde inte ansluta. Kontrollera nätet och försök igen. (' + (err.message||err) + ')';
+  }).then(function(){ $('lb').disabled = false; });
+}
+function logout(expired){
+  PW=''; try{sessionStorage.removeItem('nhpw')}catch(_){}
+  $('app').style.display='none'; $('login').style.display='grid'; $('pw').value='';
+  if(expired===true) $('le').textContent='Sessionen gick ut. Logga in igen.';
+}
+
+function stats(){
+  var rows = DATA.rows, act = rows.filter(function(r){return r.status!=='Avbokad'});
+  var paid = act.filter(function(r){return r.status==='Betald'});
+  var un = act.filter(function(r){return r.status!=='Betald'});
+  var sum = function(a,k){return a.reduce(function(s,r){return s+(Number(r[k])||0)},0)};
+  return { bookings: act.length, guests: sum(act,'guests'), paidGuests: sum(paid,'guests'), paidEur: sum(paid,'amount'),
+           unpaidEur: sum(un,'amount'), unpaidGuests: sum(un,'guests'), totalEur: sum(act,'amount'),
+           cancelled: rows.length-act.length };
+}
+function render(){
+  var s = stats(), cap = Number(DATA.cfg.capacity)||0;
+  $('event').textContent = DATA.cfg.event || '';
+  var cards = [
+    ['Bokningar', s.bookings, ''],
+    ['Gäster totalt', s.guests, ''],
+    ['Betalda gäster', s.paidGuests, ''],
+    ['Betalt (€)', s.paidEur, ''],
+    ['Kvar att betala (€)', s.unpaidEur, 'hl'],
+    cap ? ['Platser kvar', cap - s.guests, cap - s.guests < 0 ? 'hl' : ''] : ['Total försäljning (€)', s.totalEur, '']
+  ];
+  $('stats').innerHTML = cards.map(function(c){return '<div class="stat '+c[2]+'"><div class="n">'+c[1]+'</div><div class="l">'+c[0]+'</div></div>'}).join('');
+  var pct = s.guests ? Math.round(100*s.paidGuests/s.guests) : 0;
+  $('bar').style.width = pct+'%';
+  $('barl').textContent = s.paidGuests+' av '+s.guests+' gäster har betalat ('+pct+'%)' + (s.cancelled? ' · '+s.cancelled+' avbokade':'');
+
+  var chips = [['all','Alla'],['Ej betald','Ej betalda'],['Betald','Betalda'],['Avbokad','Avbokade']];
+  $('chips').innerHTML = chips.map(function(c){return '<button type="button" class="chip '+(FILTER===c[0]?'on':'')+'" data-f="'+c[0]+'">'+c[1]+'</button>'}).join('');
+
+  var rows = DATA.rows.slice().reverse().filter(function(r){
+    if(FILTER==='all' && r.status==='Avbokad') return false;
+    if(FILTER!=='all' && r.status!==FILTER) return false;
+    if(Q){ var h=(r.name+' '+r.email+' '+r.phone+' '+r.id).toLowerCase(); if(h.indexOf(Q)<0) return false; }
+    return true;
+  });
+  $('list').innerHTML = rows.length ? rows.map(card).join('') : '<div class="empty">Inga bokningar att visa.</div>';
+}
+function mailto(r){
+  var en = r.lang==='en', link = DATA.cfg.paymentLink || '[BETALNINGSLÄNK]';
+  var subj = en ? 'Payment link for the Christmas buffet' : 'Betalingslenke til julebordet';
+  var body = en
+    ? 'Hi '+r.name+',\n\nThank you for your booking ('+r.guests+' guests, '+r.amount+' EUR).\nPay here to reserve your seats: '+link+'\n\nPayment is made in advance and reserves your seats for the evening.\n\nNordic Hub'
+    : 'Hei '+r.name+',\n\nTakk for bestillingen ('+r.guests+' gjester, '+r.amount+' EUR).\nBetal her for å reservere plassene dine: '+link+'\n\nBetalingen skjer på forhånd og reserverer plassene dine for kvelden.\n\nNordic Hub';
+  return 'mailto:'+encodeURIComponent(r.email)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+}
+function card(r){
+  var pc = r.status==='Betald'?'p':(r.status==='Avbokad'?'c':'u');
+  var a = '';
+  if(r.status==='Ej betald') a += '<button class="btn sm" data-a="paid" data-id="'+esc(r.id)+'">Markera betald</button>';
+  if(r.status==='Betald') a += '<button class="btn o sm" data-a="unpaid" data-id="'+esc(r.id)+'">Ångra betalning</button>';
+  if(r.email) a += '<button class="btn o sm" data-a="mail" data-id="'+esc(r.id)+'">Skicka betalningslänk</button>';
+  if(r.email) a += '<a class="btn o sm" href="mailto:'+esc(r.email)+'">Svara kund</a>';
+  if(r.status!=='Avbokad') a += '<button class="btn o sm" data-a="cancel" data-id="'+esc(r.id)+'">Avboka</button>';
+  else a += '<button class="btn o sm" data-a="unpaid" data-id="'+esc(r.id)+'">Återställ</button>';
+  return '<div class="card '+(r.status==='Avbokad'?'c':'')+'"><div class="h"><div><div class="nm">'+esc(r.name)+'</div>'+
+    '<div class="meta">'+esc(r.id)+' · '+esc(r.ts)+'</div></div><span class="pill '+pc+'">'+esc(r.status)+'</span></div>'+
+    '<div class="sum"><b>'+r.guests+'</b> gäster · <b>'+r.amount+' €</b>'+(r.paidAt?' · betald '+esc(r.paidAt):'')+'</div>'+
+    (r.email?'<div class="ct"><a href="mailto:'+esc(r.email)+'">'+esc(r.email)+'</a></div>':'')+
+    (r.phone?'<div class="ct"><a href="tel:'+esc(r.phone)+'">'+esc(r.phone)+'</a></div>':'')+
+    (r.notes?'<div class="nt">'+esc(r.notes)+'</div>':'')+
+    '<div class="acts">'+a+'</div></div>';
+}
+function setStatus(id, status){
+  var row = DATA.rows.filter(function(r){return r.id===id})[0]; if(!row) return;
+  var old = row.status; row.status = status; row.paidAt = status==='Betald' ? '(sparar)' : ''; render();
+  call('adminSetStatus', PW, id, status).then(function(){ toast(status==='Betald'?'Markerad som betald':(status==='Avbokad'?'Avbokad':'Uppdaterad')); load(); })
+  .catch(function(e){ row.status = old; render(); toast(isAuth(e)?'Sessionen gick ut':'Kunde inte spara'); if(isAuth(e)) logout(true); });
+}
+
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-a],[data-f]'); if(!b) return;
+  if(b.dataset.f){ FILTER = b.dataset.f; render(); return; }
+  var id = b.dataset.id, a = b.dataset.a;
+  if(a==='paid') setStatus(id,'Betald');
+  else if(a==='unpaid') setStatus(id,'Ej betald');
+  else if(a==='cancel'){ if(confirm('Avboka denna bokning?')) setStatus(id,'Avbokad'); }
+  else if(a==='mail'){ openMail(id); }
+});
+var MID='';
+function openMail(id){
+  var r = DATA.rows.filter(function(x){return x.id===id})[0]; if(!r) return;
+  MID=id; $('mto').textContent='Till: '+r.name+' <'+r.email+'> · '+r.guests+' gäster · '+r.amount+' €';
+  $('mlink').value = DATA.cfg.paymentLink || ''; $('mmsg').value='';
+  $('md').showModal();
+}
+$('mcancel').addEventListener('click', function(){ $('md').close(); });
+$('mf').addEventListener('submit', function(e){
+  e.preventDefault(); $('msend').disabled=true;
+  call('adminSendMail', PW, MID, $('mlink').value, $('mmsg').value).then(function(){ $('md').close(); toast('Mejl skickat'); })
+  .catch(function(err){ toast(isAuth(err)?'Sessionen gick ut':('Fel: '+(err.message||err))); })
+  .then(function(){ $('msend').disabled=false; });
+});
+$('lf').addEventListener('submit', login);
+$('lb').addEventListener('click', login);
+$('logout').addEventListener('click', function(){logout()});
+$('refresh').addEventListener('click', function(){load().then(function(){toast('Uppdaterad')})});
+$('q').addEventListener('input', function(e){Q=e.target.value.trim().toLowerCase(); render()});
+$('af').addEventListener('submit', function(e){
+  e.preventDefault();
+  var o = {name:$('an').value, guests:$('ag').value, phone:$('ap').value, email:$('ae').value, notes:$('ano').value, paid:$('apd').checked};
+  call('adminAdd', PW, o).then(function(){ $('af').reset(); toast('Bokning sparad'); load(); })
+  .catch(function(err){ toast(isAuth(err)?'Sessionen gick ut':('Fel: '+(err.message||err))); });
+});
+(function(){ try{ var p = sessionStorage.getItem('nhpw'); if(p){ PW=p; call('adminList',PW).then(function(d){DATA=d;$('login').style.display='none';$('app').style.display='block';render()}).catch(function(){PW=''}); } }catch(_){} })();
+</script>
+</body>
+</html>
