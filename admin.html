@@ -5,6 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <title>Nordic Hub admin</title>
 <style>
 :root{--bg:#f7f4ed;--ink:#202b27;--green:#202b27;--gold:#8a8d78;--berry:#6f8489;--muted:#6b706a;--line:#e3dccd;--ok:#2f6b4a;--warn:#b5651d}
@@ -94,13 +96,17 @@ h1 em,.hero h1 em,.bkhero h1 em{font-style:normal;font-weight:300;color:var(--be
 .logo small{display:block;font-family:Jost,sans-serif;font-size:.6rem;letter-spacing:.42em;color:var(--ink);margin-top:6px;text-align:center;text-transform:none;font-weight:400}
 .book .logo .lw,.book .logo small,.who .logo .lw{color:inherit}
 .kicker,.eyebrow,.role,.facts b,.bkfacts b,label,.chip,.btn,.cta,button.submit,.btn-o,.sticky a,.nav a.btn-s{font-family:Jost,system-ui,sans-serif}
+
+.logo img{display:block;height:auto;width:170px;max-width:46vw}
+footer .logo img{width:230px;margin:0 auto}
+.logo small{margin-top:6px}
 </style>
 </head>
 <body>
 
 <div id="login">
   <div class="box">
-    <div class="logo"><span class="lw">N<svg class="o" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15.2 11v7.2M13.4 11v5.6c0 1.2.8 2 1.8 2s1.8-.8 1.8-2V11M15.2 18.6V29" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M24.6 29V11c-1.8 1-2.6 3.6-2.6 6.4 0 1.6.9 2.4 2.6 2.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>RDIC HUB</span><small>Admin</small></div>
+    <div class="logo"><img src="img/logo-dark.png" alt="Nordic Hub" width="1200" height="287"><small>Admin</small></div>
     <h1>Sign in</h1>
     <p>Christmas buffet bookings.</p>
     <form id="lf" autocomplete="off">
@@ -114,7 +120,7 @@ h1 em,.hero h1 em,.bkhero h1 em{font-style:normal;font-weight:300;color:var(--be
 <div id="app">
   <div class="wrap">
     <div class="top">
-      <div class="logo"><span class="lw">N<svg class="o" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15.2 11v7.2M13.4 11v5.6c0 1.2.8 2 1.8 2s1.8-.8 1.8-2V11M15.2 18.6V29" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M24.6 29V11c-1.8 1-2.6 3.6-2.6 6.4 0 1.6.9 2.4 2.6 2.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>RDIC HUB</span><small>Admin</small></div>
+      <div class="logo"><img src="img/logo-dark.png" alt="Nordic Hub" width="1200" height="287"><small>Admin</small></div>
       <div class="r">
         <button class="btn o sm" id="refresh" type="button">Refresh</button>
         <button class="btn o sm" id="logout" type="button">Sign out</button>
