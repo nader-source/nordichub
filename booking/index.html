@@ -267,6 +267,8 @@ h1 em,.hero h1 em,.bkhero h1 em{font-style:normal;font-weight:300;color:var(--be
 .logo img{display:block;height:auto;width:170px;max-width:46vw}
 footer .logo img{width:230px;margin:0 auto}
 .logo small{margin-top:6px}
+
+.req{color:#c0392b;margin-left:3px;font-weight:600}
 </style>
 </head>
 <body>
@@ -301,16 +303,16 @@ footer .logo img{width:230px;margin:0 auto}
         <h2>Bestill bord</h2>
         <div class="price"><span data-c="price">60</span> &euro; per person</div>
         <div class="row">
-          <div><label for="name">Fullt navn</label><input id="name" name="name" required autocomplete="name"></div>
-          <div><label for="email">E-post</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div><label for="name">Fullt navn<span class="req" aria-hidden="true">*</span></label><input id="name" name="name" required autocomplete="name"></div>
+          <div><label for="email">E-post<span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
         </div>
         <div class="row">
-          <div><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-          <div><label for="guests">Antall gjester</label>
+          <div><label for="phone">Telefon<span class="req" aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div><label for="guests">Antall gjester<span class="req" aria-hidden="true">*</span></label>
             <select id="guests" name="guests" required>
               <option value="">Velg</option>
               <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-              <option>7</option><option>8</option><option>9</option><option>10</option><option>Flere enn 10</option>
+              <option>7</option><option>8</option><option>9</option><option>10</option>
             </select>
           </div>
         </div>
@@ -379,7 +381,7 @@ footer .logo img{width:230px;margin:0 auto}
 <script src="/config.js"></script>
 <script src="/events.js"></script>
 <script>
-const T={"done_pay": "Vi har mottatt forespørselen din. Betal nå for å reservere plassen din for kvelden.", "done_mail": "Vi har mottatt forespørselen din og sender deg en betalingslenke på e-post. Betalingen skjer på forhånd og reserverer plassen din for kvelden.", "err1": "Fyll inn navn, en gyldig e-postadresse og antall gjester.", "err2": "Noe gikk galt. Prøv igjen, eller kontakt oss på +46 70 402 21 16.", "sending": "Sender...", "submit": "Send bestilling", "subj": "Julebord-bestilling", "lbl": {"n": "Navn", "e": "E-post", "p": "Telefon", "g": "Gjester", "c": "Kommentar"}};
+const T={"done_pay": "Vi har mottatt forespørselen din. Betal nå for å reservere plassen din for kvelden.", "done_mail": "Vi har mottatt forespørselen din og sender deg en betalingslenke på e-post. Betalingen skjer på forhånd og reserverer plassen din for kvelden.", "err1": "Fyll inn navn, en gyldig e-postadresse, telefonnummer og antall gjester.", "err2": "Noe gikk galt. Prøv igjen, eller kontakt oss på +46 70 402 21 16.", "sending": "Sender...", "submit": "Send bestilling", "subj": "Julebord-bestilling", "lbl": {"n": "Navn", "e": "E-post", "p": "Telefon", "g": "Gjester", "c": "Kommentar"}};
 const CONFIG=Object.assign({},window.SITE,{date:window.SITE.date_nb});
 document.querySelectorAll("[data-c]").forEach(function(el){var k=el.dataset.c;if(CONFIG[k])el.textContent=CONFIG[k]});
 document.getElementById("venue").href=CONFIG.mapsUrl;
@@ -410,7 +412,7 @@ f.addEventListener("submit",async function(e){
   e.preventDefault();err.style.display="none";
   var d=Object.fromEntries(new FormData(f).entries());
   if(d._gotcha)return;
-  if(!d.name||!/^\S+@\S+\.\S+$/.test(d.email||"")||!d.guests){fail(T.err1);return}
+  if(!d.name||!/^\S+@\S+\.\S+$/.test(d.email||"")||!(d.phone||"").trim()||!d.guests){fail(T.err1);return}
   if(CONFIG.formEndpoint){
     btn.disabled=true;btn.textContent=T.sending;
     try{

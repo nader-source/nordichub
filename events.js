@@ -7,7 +7,7 @@
     none: 'There are no open events to book right now. Follow us or contact us on +46 70 402 21 16.',
     full: function (n) { return n > 0 ? 'Only ' + n + ' seats left for this event.' : 'This event is fully booked.'; },
     closed: 'Booking for this event has closed. Please refresh the page.',
-    invalid: 'Please fill in your name, a valid email and the number of guests.',
+    invalid: 'Please fill in your name, a valid email, your phone number and the number of guests.',
     pick: 'Please choose an event.', left: ' seats left', soldout: 'Fully booked',
     error: 'Something went wrong. Please try again or contact us on +46 70 402 21 16.'
   } : {
@@ -15,7 +15,7 @@
     none: 'Det er ingen åpne arrangementer å bestille akkurat nå. Kontakt oss gjerne på +46 70 402 21 16.',
     full: function (n) { return n > 0 ? 'Bare ' + n + ' plasser igjen på dette arrangementet.' : 'Dette arrangementet er fullbooket.'; },
     closed: 'Bestillingen for dette arrangementet er stengt. Last inn siden på nytt.',
-    invalid: 'Fyll inn navn, en gyldig e-postadresse og antall gjester.',
+    invalid: 'Fyll inn navn, en gyldig e-postadresse, telefonnummer og antall gjester.',
     pick: 'Velg et arrangement.', left: ' plasser igjen', soldout: 'Fullbooket',
     error: 'Noe gikk galt. Prøv igjen, eller kontakt oss på +46 70 402 21 16.'
   };
