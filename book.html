@@ -269,6 +269,9 @@ footer .logo img{width:230px;margin:0 auto}
 .logo small{margin-top:6px}
 
 .req{color:#c0392b;margin-left:3px;font-weight:600}
+
+.prog{display:grid;gap:4px}.prog span b{display:inline-block!important;min-width:6.4em!important;font-family:inherit!important;font-size:inherit!important;letter-spacing:0!important;text-transform:none!important;font-weight:600!important;color:var(--ink)!important;padding:0!important}
+li[data-prog] span:last-child{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -285,6 +288,7 @@ footer .logo img{width:230px;margin:0 auto}
     <img class="bkimg" src="img/food.jpg" alt="" width="900" height="1350">
     <div class="bkfacts">
       <div><b>Dato</b><span data-c="date"></span></div>
+      <div><b>Program</b><span class="prog"><span><b>16:30</b> Dørene åpner</span><span><b>17:00-19:00</b> Julebuffet</span><span><b>Fra 19:00</b> Dessert, mingel og julestemning</span></span></div>
       <div id="timeRow"><b>Tid</b><span data-c="time"></span></div>
       <div><b>Sted</b><span><a data-c="venue" id="venue" href="#" target="_blank" rel="noopener"></a></span></div>
       <div><b>Pris</b><span><span data-c="price">60</span> &euro; per person<small>Drikkebonger kjøpes i baren.</small></span></div>

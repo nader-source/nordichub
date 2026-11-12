@@ -219,6 +219,9 @@ footer .logo img{width:230px;margin:0 auto}
 .logo small{margin-top:6px}
 
 .req{color:#c0392b;margin-left:3px;font-weight:600}
+
+.prog{display:grid;gap:4px}.prog span b{display:inline-block!important;min-width:6.4em!important;font-family:inherit!important;font-size:inherit!important;letter-spacing:0!important;text-transform:none!important;font-weight:600!important;color:var(--ink)!important;padding:0!important}
+li[data-prog] span:last-child{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -236,6 +239,7 @@ footer .logo img{width:230px;margin:0 auto}
         <p class="lead">A bountiful Nordic julebord with hot and cold dishes, made from fresh local ingredients and much-loved Christmas traditions. Our first, not our last.</p>
         <div class="facts">
           <div><b>Date</b> <span data-c="date">Saturday 28 November 2026</span></div>
+          <div><b>Schedule</b> <span class="prog"><span><b>16:30</b> Doors open</span><span><b>17:00-19:00</b> Christmas buffet</span><span><b>From 19:00</b> Dessert, stay and mingle in the Christmas spirit</span></span></div>
           <div id="timeRow"><b>Time</b> <span data-c="time"></span></div>
           <div><b>Place</b> <span data-c="venue">C. Manises, 18, Plaza de Sol, 03580 Alfaz del Pi, Alicante</span></div>
           <div><b>Price</b> <span><span data-c="price">60</span> &euro; per person</span></div>
@@ -260,7 +264,7 @@ footer .logo img{width:230px;margin:0 auto}
       <ul>
         <li><span>Date</span><span data-c="date">Saturday 28 November 2026</span></li>
         <li><span>Where</span><span data-c="venue">C. Manises, 18, Plaza de Sol, 03580 Alfaz del Pi, Alicante</span></li>
-        <li><span>Format</span><span>Christmas buffet, hot and cold</span></li>
+        <li data-prog><span>Doors open</span><span>16:30</span></li><li data-prog><span>Christmas buffet</span><span>17:00-19:00</span></li><li data-prog><span>Dessert &amp; mingle</span><span>From 19:00</span></li><li><span>Format</span><span>Christmas buffet, hot and cold</span></li>
         <li><span>Price</span><span><span data-c="price">60</span> &euro; per person</span></li>
         <li><span>Drinks</span><span>Drink tickets at the bar</span></li>
       </ul>
