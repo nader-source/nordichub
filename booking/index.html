@@ -377,6 +377,7 @@ footer .logo img{width:230px;margin:0 auto}
 </div>
 
 <script src="/config.js"></script>
+<script src="/events.js"></script>
 <script>
 const T={"done_pay": "Vi har mottatt forespørselen din. Betal nå for å reservere plassen din for kvelden.", "done_mail": "Vi har mottatt forespørselen din og sender deg en betalingslenke på e-post. Betalingen skjer på forhånd og reserverer plassen din for kvelden.", "err1": "Fyll inn navn, en gyldig e-postadresse og antall gjester.", "err2": "Noe gikk galt. Prøv igjen, eller kontakt oss på +46 70 402 21 16.", "sending": "Sender...", "submit": "Send bestilling", "subj": "Julebord-bestilling", "lbl": {"n": "Navn", "e": "E-post", "p": "Telefon", "g": "Gjester", "c": "Kommentar"}};
 const CONFIG=Object.assign({},window.SITE,{date:window.SITE.date_nb});
@@ -413,9 +414,8 @@ f.addEventListener("submit",async function(e){
   if(CONFIG.formEndpoint){
     btn.disabled=true;btn.textContent=T.sending;
     try{
-      await fetch(CONFIG.formEndpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body:JSON.stringify(Object.assign({},d,{lang:document.documentElement.lang}))});
-      showDone();
+      var res = await NH.submit(d);
+      if(res.ok) showDone(); else fail(res.msg);
     }catch(_){fail(T.err2)}
     btn.disabled=false;btn.textContent=T.submit;
   }else{
