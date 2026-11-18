@@ -355,17 +355,25 @@ function openMail(id){
 }
 $('mcancel').addEventListener('click',function(){$('md').close()});
 function payMail(r, link, msg){
-  var ev=evById(r.eventId)||{}, en=r.lang==='en';
-  var when=[ev.date,ev.time].filter(Boolean).join(' '), place=ev.venue||'';
+  var ev=evById(r.eventId)||{}, en=r.lang==='en', L=link||(en?'[PAYMENT LINK]':'[BETALINGSLENKE]');
+  var first=String(r.name||'').trim().split(/\s+/)[0]||'';
   var subj, body;
   if(en){
-    subj='Your booking at Nordic Hub: '+(ev.name||'')+' ('+r.id+')';
-    body='Hi '+r.name+',\n\nThank you for your booking.\n\n'+(ev.name||'')+'\n'+when+'\n'+place+'\nGuests: '+r.guests+'\nTotal: '+r.amount+' EUR\nBooking ID: '+r.id+'\n\n'+
-      (link?'You can pay here to reserve your seats:\n'+link+'\n\n':'')+'Payment is made in advance and reserves your seats for the evening.\n\n'+(msg?msg+'\n\n':'')+'Best regards,\nNordic Hub\n+46 70 402 21 16';
+    subj='Payment for '+(ev.name||'your booking')+' at Nordic Hub';
+    body='Hi '+first+'!\n\nThank you so much for booking the Christmas buffet at Nordic Hub. We look forward to seeing you!\n\n'+
+      'Booking ID: '+r.id+' · '+r.guests+' guests · '+r.amount+' EUR\n\n'+
+      'Here is the payment link for your seats:\n'+L+'\n\n'+
+      'Please pay by Saturday 21 November to confirm that you are coming. Your seats are reserved once we have received the payment.\n\n'+
+      'If you have any questions or problems with the payment, please contact Nader Anouti directly on +46 70 402 21 16.\n\n'+
+      (msg?msg+'\n\n':'')+'Best regards\nNordic Hub';
   } else {
-    subj='Din bestilling hos Nordic Hub: '+(ev.name||'')+' ('+r.id+')';
-    body='Hei '+r.name+',\n\nTakk for bestillingen.\n\n'+(ev.name||'')+'\n'+when+'\n'+place+'\nGjester: '+r.guests+'\nTotalt: '+r.amount+' EUR\nBestillings-ID: '+r.id+'\n\n'+
-      (link?'Du kan betale her for å reservere plassene dine:\n'+link+'\n\n':'')+'Betalingen skjer på forhånd og reserverer plassene dine for kvelden.\n\n'+(msg?msg+'\n\n':'')+'Vennlig hilsen,\nNordic Hub\n+46 70 402 21 16';
+    subj='Betaling for '+(ev.name||'bestillingen')+' hos Nordic Hub';
+    body='Hei '+first+'!\n\nTusen takk for bestillingen til julebordet hos Nordic Hub. Vi gleder oss til å se dere!\n\n'+
+      'Bestillings-ID: '+r.id+' · '+r.guests+' gjester · '+r.amount+' EUR\n\n'+
+      'Her er betalingslenken for plassene deres:\n'+L+'\n\n'+
+      'Betal gjerne innen lørdag 21. november for å bekrefte at dere kommer. Plassene er reservert når betalingen er mottatt.\n\n'+
+      'Har dere spørsmål eller problemer med betalingen, ta gjerne direkte kontakt med Nader Anouti på +46 70 402 21 16.\n\n'+
+      (msg?msg+'\n\n':'')+'Vennlig hilsen\nNordic Hub';
   }
   return 'mailto:'+encodeURIComponent(r.email)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
 }
