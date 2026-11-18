@@ -178,9 +178,10 @@ dialog h2{font-size:1.4rem}
 <dialog id="md"><form id="mf">
   <h2>Send payment link</h2>
   <div class="hint" id="mto"></div>
-  <input id="mlink" type="url" placeholder="Paste payment link (SumUp / Stripe)" required>
+  <input id="mlink" type="url" placeholder="Paste payment link (SumUp / Stripe)">
   <textarea id="mmsg" placeholder="Personal message (optional)" style="min-height:90px"></textarea>
-  <div class="row2"><button class="btn o sm" type="button" id="mcancel">Cancel</button><button class="btn sm" type="submit" id="msend">Send email</button></div>
+  <p class="hint">"Open in Mail" opens a ready-written email in your mail app (Mail, Gmail, Outlook). Just press Send there. This is the reliable way while Google blocks automatic emails.</p>
+  <div class="row2"><button class="btn o sm" type="button" id="mcancel">Cancel</button><button class="btn o sm" type="button" id="mauto">Send automatically</button><button class="btn sm" type="submit" id="msend">Open in Mail</button></div>
 </form></dialog>
 
 <dialog id="cd"><form id="cf">
@@ -353,10 +354,31 @@ function openMail(id){
   $('mlink').value=DATA.cfg.paymentLink||''; $('mmsg').value=''; $('md').showModal();
 }
 $('mcancel').addEventListener('click',function(){$('md').close()});
+function payMail(r, link, msg){
+  var ev=evById(r.eventId)||{}, en=r.lang==='en';
+  var when=[ev.date,ev.time].filter(Boolean).join(' '), place=ev.venue||'';
+  var subj, body;
+  if(en){
+    subj='Your booking at Nordic Hub: '+(ev.name||'')+' ('+r.id+')';
+    body='Hi '+r.name+',\n\nThank you for your booking.\n\n'+(ev.name||'')+'\n'+when+'\n'+place+'\nGuests: '+r.guests+'\nTotal: '+r.amount+' EUR\nBooking ID: '+r.id+'\n\n'+
+      (link?'You can pay here to reserve your seats:\n'+link+'\n\n':'')+'Payment is made in advance and reserves your seats for the evening.\n\n'+(msg?msg+'\n\n':'')+'Best regards,\nNordic Hub\n+46 70 402 21 16';
+  } else {
+    subj='Din bestilling hos Nordic Hub: '+(ev.name||'')+' ('+r.id+')';
+    body='Hei '+r.name+',\n\nTakk for bestillingen.\n\n'+(ev.name||'')+'\n'+when+'\n'+place+'\nGjester: '+r.guests+'\nTotalt: '+r.amount+' EUR\nBestillings-ID: '+r.id+'\n\n'+
+      (link?'Du kan betale her for å reservere plassene dine:\n'+link+'\n\n':'')+'Betalingen skjer på forhånd og reserverer plassene dine for kvelden.\n\n'+(msg?msg+'\n\n':'')+'Vennlig hilsen,\nNordic Hub\n+46 70 402 21 16';
+  }
+  return 'mailto:'+encodeURIComponent(r.email)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+}
 $('mf').addEventListener('submit',function(e){
-  e.preventDefault(); $('msend').disabled=true;
-  call('adminSendMail',MID,$('mlink').value,$('mmsg').value).then(function(){$('md').close();toast('Email sent')}).catch(fail)
-  .then(function(){$('msend').disabled=false});
+  e.preventDefault();
+  var r=DATA.rows.filter(function(x){return x.id===MID})[0]; if(!r) return;
+  var a=document.createElement('a'); a.href=payMail(r,$('mlink').value.trim(),$('mmsg').value.trim()); document.body.appendChild(a); a.click(); a.remove();
+  $('md').close(); toast('Email opened in your mail app');
+});
+$('mauto').addEventListener('click',function(){
+  $('mauto').disabled=true;
+  call('adminSendMail',MID,$('mlink').value,$('mmsg').value).then(function(){$('md').close();toast('Email sent (check for bounce messages)')}).catch(fail)
+  .then(function(){$('mauto').disabled=false});
 });
 $('evsel').addEventListener('change',function(e){CUR=e.target.value;renderBookings()});
 $('af').addEventListener('submit',function(e){
