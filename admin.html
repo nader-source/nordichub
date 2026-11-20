@@ -87,6 +87,12 @@ dialog form{padding:20px;display:grid;gap:12px}
 dialog h2{font-size:1.4rem}
 .row2{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
 .hint{font-size:.8rem;color:var(--muted)}
+.calc{font-size:.9rem;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:10px 12px}
+.calc b{font-weight:600}
+.btn.del{border-color:#b23b3b;color:#b23b3b}
+.disc{color:var(--blue-d);font-weight:600}
+.an{font-size:.88rem;color:#3d4a45;background:#eef1ef;border-left:2px solid var(--blue);padding:6px 10px;margin-top:8px}
+.an b{font-family:Jost,sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-d);display:block;font-weight:500}
 #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:20}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -144,7 +150,8 @@ dialog h2{font-size:1.4rem}
           <div class="grid2"><input id="ag" type="number" min="1" max="200" inputmode="numeric" placeholder="Guests" required>
             <input id="ap" type="tel" placeholder="Phone"></div>
           <input id="ae" type="email" placeholder="Email (optional)">
-          <input id="ano" placeholder="Note (optional)">
+          <input id="ano" placeholder="Guest comment (optional)">
+          <div class="grid2"><input id="adisc" placeholder="Discount € or % (optional)"><input id="aadm" placeholder="Our note (optional)"></div>
           <label class="chk"><input id="apd" type="checkbox"> Already paid</label>
           <button class="btn" type="submit">Save booking</button>
         </form>
@@ -173,6 +180,28 @@ dialog h2{font-size:1.4rem}
   <label class="chk" id="e_openw"><input id="e_open" type="checkbox"> Open for booking right away</label>
   <p class="hint">Open events appear in the booking form. With several open events, guests choose which one to book.</p>
   <div class="row2"><button class="btn o sm" type="button" id="evcancel">Cancel</button><button class="btn sm" type="submit" id="evsave">Save event</button></div>
+</form></dialog>
+
+<dialog id="bd"><form id="bf">
+  <h2>Edit booking</h2>
+  <div class="hint" id="b_id"></div>
+  <div><label class="f" for="b_name">Name</label><input id="b_name" required></div>
+  <div class="grid2">
+    <div><label class="f" for="b_email">Email</label><input id="b_email" type="email"></div>
+    <div><label class="f" for="b_phone">Phone</label><input id="b_phone" type="tel"></div>
+  </div>
+  <div class="grid2">
+    <div><label class="f" for="b_guests">Guests</label><input id="b_guests" type="number" min="1" max="200" inputmode="numeric" required></div>
+    <div><label class="f" for="b_disc">Discount (€ or %)</label><input id="b_disc" placeholder="e.g. 20 or 10%"></div>
+  </div>
+  <div><label class="f" for="b_event">Event</label><select id="b_event"></select></div>
+  <div class="calc" id="b_calc"></div>
+  <div><label class="f" for="b_notes">Guest's comment</label><textarea id="b_notes" style="min-height:70px"></textarea></div>
+  <div><label class="f" for="b_admin">Our note (only visible in admin)</label><textarea id="b_admin" style="min-height:70px" placeholder="e.g. friend of Karlo, paid cash, invoice to company"></textarea></div>
+  <div class="row2" style="justify-content:space-between">
+    <button class="btn o sm del" type="button" id="bdel">Delete booking</button>
+    <span style="display:flex;gap:8px"><button class="btn o sm" type="button" id="bcancel">Cancel</button><button class="btn sm" type="submit" id="bsave">Save</button></span>
+  </div>
 </form></dialog>
 
 <dialog id="md"><form id="mf">
@@ -290,14 +319,15 @@ function bCard(r){
   if(r.status==='Paid') a+='<button class="btn o sm" data-a="Unpaid" data-id="'+esc(r.id)+'">Undo payment</button>';
   if(r.email && r.status!=='Cancelled') a+='<button class="btn o sm" data-a="mail" data-id="'+esc(r.id)+'">Send payment link</button>';
   if(r.email) a+='<a class="btn o sm" href="mailto:'+esc(r.email)+'">Reply to guest</a>';
+  a+='<button class="btn o sm" data-a="edit" data-id="'+esc(r.id)+'">Edit</button>';
   if(r.status!=='Cancelled') a+='<button class="btn o sm" data-a="Cancelled" data-id="'+esc(r.id)+'">Cancel booking</button>';
   else a+='<button class="btn o sm" data-a="Unpaid" data-id="'+esc(r.id)+'">Restore</button>';
   return '<div class="card"'+(r.status==='Cancelled'?' style="opacity:.6"':'')+'><div class="h"><div><div class="nm">'+esc(r.name)+'</div>'+
     '<div class="meta">'+esc(r.id)+' · '+esc(r.ts)+' · '+(r.lang==='en'?'English':'Norwegian')+'</div></div>'+pill(r.status)+'</div>'+
-    '<div class="sum"><b>'+r.guests+'</b> guests · <b>'+r.amount+' €</b>'+(r.paidAt?' · paid '+esc(r.paidAt):'')+'</div>'+
+    '<div class="sum"><b>'+r.guests+'</b> guests · <b>'+r.amount+' €</b>'+(r.discount?' <span class="disc">(−'+r.discount+' € discount)</span>':'')+(r.paidAt?' · paid '+esc(r.paidAt):'')+'</div>'+
     (r.email?'<div class="ct"><a href="mailto:'+esc(r.email)+'">'+esc(r.email)+'</a></div>':'')+
     (r.phone?'<div class="ct"><a href="tel:'+esc(r.phone)+'">'+esc(r.phone)+'</a></div>':'')+
-    (r.notes?'<div class="nt">'+esc(r.notes)+'</div>':'')+'<div class="acts">'+a+'</div></div>';
+    (r.notes?'<div class="nt">'+esc(r.notes)+'</div>':'')+(r.adminNote?'<div class="an"><b>Our note</b>'+esc(r.adminNote)+'</div>':'')+'<div class="acts">'+a+'</div></div>';
 }
 
 /* ---- events actions ---- */
@@ -339,6 +369,7 @@ document.addEventListener('click',function(e){
   }
   var a2=t.dataset.a;
   if(a2==='mail') return openMail(id);
+  if(a2==='edit') return openBooking(id);
   if(a2==='Cancelled') return ask('Cancel this booking?','The guests are removed from the totals. You can restore it later.',function(){setStatus(id,'Cancelled')});
   setStatus(id,a2);
 });
@@ -388,11 +419,49 @@ $('mauto').addEventListener('click',function(){
   call('adminSendMail',MID,$('mlink').value,$('mmsg').value).then(function(){$('md').close();toast('Email sent (check for bounce messages)')}).catch(fail)
   .then(function(){$('mauto').disabled=false});
 });
+function parseDisc(v, gross){
+  v=String(v||'').trim().replace(',','.'); if(!v) return 0;
+  var n=parseFloat(v); if(!(n>0)) return 0;
+  if(v.indexOf('%')>=0) n=Math.round(gross*n)/100;
+  return Math.min(Math.round(n*100)/100, gross);
+}
+var BID='';
+function calcB(){
+  var ev=evById($('b_event').value)||{}, g=parseInt($('b_guests').value,10)||0, gross=g*(ev.price||0), d=parseDisc($('b_disc').value,gross);
+  $('b_calc').innerHTML=g+' × '+(ev.price||0)+' € = '+gross+' €'+(d?' &nbsp;−&nbsp; '+d+' € discount':'')+' &nbsp;→&nbsp; <b>'+(gross-d)+' € to pay</b>';
+}
+function openBooking(id){
+  var r=DATA.rows.filter(function(x){return x.id===id})[0]; if(!r) return;
+  BID=id; $('b_id').textContent=r.id+' · booked '+r.ts+' · '+r.status;
+  $('b_name').value=r.name; $('b_email').value=r.email; $('b_phone').value=r.phone; $('b_guests').value=r.guests;
+  $('b_disc').value=r.discount||''; $('b_notes').value=r.notes||''; $('b_admin').value=r.adminNote||'';
+  $('b_event').innerHTML=DATA.events.slice().reverse().map(function(e){return '<option value="'+esc(e.id)+'"'+(e.id===r.eventId?' selected':'')+'>'+esc(e.name)+' · '+esc(e.date||'')+' ('+e.price+' €)</option>'}).join('');
+  calcB(); $('bd').showModal();
+}
+['b_guests','b_disc','b_event'].forEach(function(k){$(k).addEventListener('input',calcB);$(k).addEventListener('change',calcB)});
+$('bcancel').addEventListener('click',function(){$('bd').close()});
+$('bf').addEventListener('submit',function(e){
+  e.preventDefault(); $('bsave').disabled=true;
+  var ev=evById($('b_event').value)||{}, g=parseInt($('b_guests').value,10)||0;
+  var o={name:$('b_name').value,email:$('b_email').value,phone:$('b_phone').value,guests:g,eventId:$('b_event').value,
+         notes:$('b_notes').value,adminNote:$('b_admin').value,discount:parseDisc($('b_disc').value,g*(ev.price||0))};
+  call('adminUpdateBooking',BID,o).then(function(){$('bd').close();toast('Booking updated');return load()}).catch(fail)
+  .then(function(){$('bsave').disabled=false});
+});
+$('bdel').addEventListener('click',function(){
+  var r=DATA.rows.filter(function(x){return x.id===BID})[0]; if(!r) return;
+  $('bd').close();
+  ask('Delete booking for '+r.name+'?','It is removed from the list and totals. A copy is kept in the "Deleted" tab of the Google Sheet. Tip: use "Cancel booking" instead if you want to keep it visible.',function(){
+    call('adminDeleteBooking',BID).then(function(){toast('Booking deleted');return load()}).catch(fail);
+  });
+});
 $('evsel').addEventListener('change',function(e){CUR=e.target.value;renderBookings()});
 $('af').addEventListener('submit',function(e){
   e.preventDefault();
   if(!CUR) return toast('Create an event first');
-  var o={eventId:CUR,name:$('an').value,guests:$('ag').value,phone:$('ap').value,email:$('ae').value,notes:$('ano').value,paid:$('apd').checked};
+  var evc=evById(CUR)||{}, gg=parseInt($('ag').value,10)||0;
+  var o={eventId:CUR,name:$('an').value,guests:$('ag').value,phone:$('ap').value,email:$('ae').value,notes:$('ano').value,paid:$('apd').checked,
+         discount:parseDisc($('adisc').value,gg*(evc.price||0)),adminNote:$('aadm').value};
   call('adminAdd',o).then(function(){$('af').reset();toast('Booking saved');return load()}).catch(fail);
 });
 $('lf').addEventListener('submit',login); $('lb').addEventListener('click',login);
